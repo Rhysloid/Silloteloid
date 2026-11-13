@@ -1,0 +1,396 @@
+/* ---------- Blue and black colors ---------- */
+:root {
+  --black: #000000;
+  --panel: #0a0f1f;      /* very dark blue for inputs and cards */
+  --blue: #2563eb;       /* main blue */
+  --light-blue: #60a5fa; /* lighter blue for text and highlights */
+  --pale-blue: #bfdbfe;  /* very light blue for errors */
+  --white: #ffffff;
+  --gray: #9ca3af;
+
+  /* script.js uses these three names for the password strength bar:
+     weak = dark blue, medium = blue, strong = light blue */
+  --bad: #1e3a8a;
+  --gold: #2563eb;
+  --ok: #60a5fa;
+}
+
+/* ---------- Basics ---------- */
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  background: var(--black);
+  color: var(--white);
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: 16px;
+  line-height: 1.5;
+}
+
+.wrap {
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 24px 16px 60px;
+}
+
+h1 {
+  margin: 0 0 8px;
+  font-size: 2.2rem;
+  color: var(--light-blue);
+}
+
+.lede {
+  color: var(--gray);
+  margin: 0 0 20px;
+}
+
+/* ---------- Progress bar ---------- */
+.prog {
+  position: sticky;
+  top: 0;
+  background: var(--black);
+  padding: 10px 0;
+  z-index: 5;
+}
+
+.prog p {
+  margin: 0 0 6px;
+  font-size: 0.9rem;
+  color: var(--gray);
+}
+
+.bar {
+  height: 10px;
+  background: var(--panel);
+  border: 1px solid var(--blue);
+}
+
+.bar i {
+  display: block;
+  height: 100%;
+  width: 0;
+  background: var(--blue);
+}
+
+/* ---------- Form layout ---------- */
+form {
+  background: var(--panel);
+  border: 2px solid var(--blue);
+}
+
+.sec {
+  display: grid;
+  grid-template-columns: 200px 1fr;
+  gap: 18px;
+  padding: 24px;
+  border-bottom: 1px solid var(--blue);
+}
+
+.sec h2 {
+  margin: 0;
+  font-size: 1.2rem;
+  padding-left: 10px;
+  border-left: 5px solid var(--blue);
+}
+
+.sec h2 small {
+  display: block;
+  margin-top: 6px;
+  font-size: 0.85rem;
+  font-weight: normal;
+  color: var(--gray);
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 16px;
+}
+
+.full {
+  grid-column: 1 / -1;
+}
+
+/* ---------- Labels and inputs ---------- */
+label,
+.lbl {
+  display: block;
+  margin-bottom: 5px;
+  font-weight: bold;
+  font-size: 0.92rem;
+  color: var(--light-blue);
+}
+
+input:not([type="radio"]):not([type="checkbox"]),
+select,
+textarea {
+  width: 100%;
+  padding: 10px;
+  font: inherit;
+  color: var(--white);
+  background: var(--black);
+  border: 1px solid var(--blue);
+}
+
+input::placeholder,
+textarea::placeholder {
+  color: #6b7280;
+}
+
+textarea {
+  min-height: 120px;
+  resize: vertical;
+}
+
+:focus-visible {
+  outline: 3px solid var(--light-blue);
+  outline-offset: 2px;
+}
+
+/* ---------- Validation states ---------- */
+/* Invalid = dashed pale-blue border, valid = solid light-blue border */
+.field.bad input:not([type="radio"]):not([type="checkbox"]),
+.field.bad select,
+.field.bad textarea {
+  border: 2px dashed var(--pale-blue);
+}
+
+.field.good input:not([type="radio"]):not([type="checkbox"]),
+.field.good select,
+.field.good textarea {
+  border: 2px solid var(--light-blue);
+}
+
+.err {
+  display: block;
+  margin-top: 4px;
+  font-size: 0.85rem;
+  font-weight: bold;
+  color: var(--pale-blue);
+}
+
+.hint {
+  display: block;
+  margin-top: 4px;
+  font-size: 0.82rem;
+  color: var(--gray);
+}
+
+/* ---------- Radio buttons and checkboxes ---------- */
+.opts {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.opt {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin: 0;
+  padding: 9px 12px;
+  border: 1px solid var(--blue);
+  background: var(--black);
+  color: var(--white);
+  font-weight: normal;
+  cursor: pointer;
+}
+
+.opt:has(input:checked) {
+  background: var(--blue);
+  font-weight: bold;
+}
+
+.opt input {
+  width: 18px;
+  height: 18px;
+  margin: 0;
+  accent-color: var(--light-blue);
+}
+
+/* ---------- Age badge ---------- */
+.badge {
+  display: inline-block;
+  margin-top: 6px;
+  padding: 4px 10px;
+  font-size: 0.85rem;
+  color: var(--gray);
+  border: 1px solid var(--gray);
+}
+
+.badge.ok {
+  color: var(--light-blue);
+  font-weight: bold;
+  border: 2px solid var(--light-blue);
+}
+
+.badge.no {
+  color: var(--pale-blue);
+  font-weight: bold;
+  border: 2px dashed var(--pale-blue);
+}
+
+/* ---------- Password strength meter ---------- */
+.meter {
+  height: 8px;
+  margin-top: 8px;
+  background: var(--black);
+  border: 1px solid var(--blue);
+}
+
+.meter i {
+  display: block;
+  height: 100%;
+  width: 0;
+}
+
+/* ---------- File preview ---------- */
+#prev {
+  display: none;
+  max-width: 110px;
+  max-height: 110px;
+  margin-top: 8px;
+  border: 1px solid var(--blue);
+}
+
+/* ---------- Buttons ---------- */
+.act {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 12px;
+  padding: 20px 24px;
+  background: var(--black);
+}
+
+button {
+  padding: 12px 22px;
+  font: inherit;
+  font-weight: bold;
+  cursor: pointer;
+  border: 2px solid var(--blue);
+}
+
+.pri {
+  background: var(--blue);
+  color: var(--white);
+}
+
+.pri:hover {
+  background: var(--light-blue);
+  border-color: var(--light-blue);
+  color: var(--black);
+}
+
+.sec2 {
+  background: var(--black);
+  color: var(--light-blue);
+}
+
+.sec2:hover {
+  background: var(--panel);
+}
+
+#banner {
+  font-weight: bold;
+  color: var(--pale-blue);
+}
+
+/* ---------- Modal (summary box) ---------- */
+dialog {
+  width: min(640px, calc(100% - 28px));
+  max-height: 86vh;
+  padding: 0;
+  border: 3px solid var(--blue);
+  background: var(--panel);
+  color: var(--white);
+}
+
+dialog::backdrop {
+  background: rgba(0, 0, 0, 0.8);
+}
+
+dialog h2 {
+  margin: 0;
+  padding: 20px 22px 4px;
+  color: var(--light-blue);
+}
+
+dialog p.s {
+  margin: 0;
+  padding: 0 22px 12px;
+  color: var(--gray);
+}
+
+dl {
+  margin: 0;
+  padding: 0 22px;
+  max-height: 48vh;
+  overflow: auto;
+}
+
+dl div {
+  display: grid;
+  grid-template-columns: 150px 1fr;
+  gap: 10px;
+  padding: 9px 0;
+  border-top: 1px solid var(--blue);
+}
+
+dt {
+  color: var(--light-blue);
+  font-size: 0.9rem;
+}
+
+dd {
+  margin: 0;
+  font-weight: bold;
+  overflow-wrap: anywhere;
+  white-space: pre-wrap;
+}
+
+.mact {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: flex-end;
+  gap: 10px;
+  padding: 16px 22px;
+  border-top: 1px solid var(--blue);
+}
+
+/* ---------- Toast message ---------- */
+#toast {
+  position: fixed;
+  left: 50%;
+  bottom: 20px;
+  transform: translateX(-50%);
+  padding: 12px 18px;
+  background: var(--blue);
+  color: var(--white);
+  font-weight: bold;
+  opacity: 0;
+  pointer-events: none;
+}
+
+#toast.on {
+  opacity: 1;
+}
+
+/* ---------- Phones ---------- */
+@media (max-width: 700px) {
+  .sec {
+    grid-template-columns: 1fr;
+    padding: 20px 16px;
+  }
+
+  .grid {
+    grid-template-columns: 1fr;
+  }
+
+  dl div {
+    grid-template-columns: 1fr;
+    gap: 2px;
+  }
+}

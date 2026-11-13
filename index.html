@@ -1,0 +1,244 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Student Registration Form</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<div class="wrap">
+  <h1>Student Registration</h1>
+  <p class="lede">
+    Harborview University, Academic Year 2026–2027. Fill in every section.
+    This is a sample form: nothing is sent anywhere.
+  </p>
+
+  <!-- Progress bar -->
+  <div class="prog">
+    <p id="ptxt">0 of 19 fields valid</p>
+    <div class="bar"><i id="pbar"></i></div>
+  </div>
+
+  <form id="f" novalidate>
+
+    <!-- ===== Personal details ===== -->
+    <section class="sec">
+      <h2>Personal details</h2>
+      <div class="grid">
+
+        <div class="field full" data-f="name">
+          <label for="name">Full name</label>
+          <input id="name" type="text" placeholder="Rhysloid Sillote">
+          <small class="err"></small>
+        </div>
+
+        <div class="field" data-f="lrn">
+          <label for="lrn">Student ID / LRN</label>
+          <input id="lrn" type="text" maxlength="12" placeholder="12 digits">
+          <small class="hint">Digits only.</small>
+          <small class="err"></small>
+        </div>
+
+        <div class="field" data-f="dob">
+          <label for="dob">Date of birth</label>
+          <input id="dob" type="date">
+          <span id="age" class="badge">Age appears here</span>
+          <small class="err"></small>
+        </div>
+
+        <div class="field" data-f="mobile">
+          <label for="mobile">Mobile number</label>
+          <input id="mobile" type="tel" pattern="[0-9]{11}" maxlength="11" placeholder="09171234567">
+          <small class="err"></small>
+        </div>
+
+        <div class="field" data-f="email">
+          <label for="email">Institutional email</label>
+          <input id="email" type="email" placeholder="loid@harborview.edu.ph">
+          <small class="hint">Must end in .edu or .edu.ph</small>
+          <small class="err"></small>
+        </div>
+
+        <div class="field full" data-f="pemail">
+          <label for="pemail">Personal email</label>
+          <input id="pemail" type="email" placeholder="loid@gmail.com">
+          <small class="err"></small>
+        </div>
+
+      </div>
+    </section>
+
+    <section class="sec">
+      <h2>Enrollment</h2>
+      <div class="grid">
+
+        <div class="field full" data-f="program">
+          <label for="program">Degree program / major</label>
+          <select id="program">
+            <option value="">Choose a program</option>
+            <option>BS Computer Science</option>
+            <option>BS Information Technology</option>
+            <option>BS Nursing</option>
+            <option>BS Biology</option>
+            <option>BS Accountancy</option>
+            <option>BS Business Administration</option>
+            <option>BS Elementary Education</option>
+            <option>BS Civil Engineering</option>
+            <option>BS Electronics Engineering</option>
+          </select>
+          <small class="err"></small>
+        </div>
+
+        <div class="field" data-f="year">
+          <span class="lbl">Year level</span>
+          <div class="opts">
+            <label class="opt"><input type="radio" name="year" value="1st Year"> 1st</label>
+            <label class="opt"><input type="radio" name="year" value="2nd Year"> 2nd</label>
+            <label class="opt"><input type="radio" name="year" value="3rd Year"> 3rd</label>
+            <label class="opt"><input type="radio" name="year" value="4th Year"> 4th</label>
+          </div>
+          <small class="err"></small>
+        </div>
+
+        <div class="field" data-f="status">
+          <span class="lbl">Enrollment status</span>
+          <div class="opts">
+            <label class="opt"><input type="radio" name="status" value="Regular"> Regular</label>
+            <label class="opt"><input type="radio" name="status" value="Irregular"> Irregular</label>
+          </div>
+          <small class="err"></small>
+        </div>
+
+        <div class="field" data-f="units">
+          <label for="units">Units to enroll</label>
+          <input id="units" type="number" min="3" max="24" placeholder="3 to 24">
+          <small class="hint">Regular students enroll in at least 15.</small>
+          <small class="err"></small>
+        </div>
+
+        <div class="field" data-f="gwa">
+          <label for="gwa">GPA / GWA</label>
+          <input id="gwa" type="number" min="1" max="5" step="0.01" placeholder="1.00 to 5.00">
+          <small class="hint">1.00 is the highest grade.</small>
+          <small class="err"></small>
+        </div>
+
+        <div class="field full" data-f="labs">
+          <span class="lbl">Laboratory courses</span>
+          <div class="opts" id="labs">
+            <label class="opt"><input type="checkbox" name="labs" value="Computer Lab"> Computer</label>
+            <label class="opt"><input type="checkbox" name="labs" value="Chemistry Lab"> Chemistry</label>
+            <label class="opt"><input type="checkbox" name="labs" value="Physics Lab"> Physics</label>
+            <label class="opt"><input type="checkbox" name="labs" value="Biology Lab"> Biology</label>
+            <label class="opt"><input type="checkbox" name="labs" value="Electronics Lab"> Electronics</label>
+            <label class="opt"><input type="checkbox" name="labs" value="None" id="labnone"> No laboratory course</label>
+          </div>
+          <small class="hint">Pick at least one.</small>
+          <small class="err"></small>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- ===== Emergency contact ===== -->
+    <section class="sec">
+      <h2>Emergency contact</h2>
+      <div class="grid">
+
+        <div class="field" data-f="ecname">
+          <label for="ecname">Contact name</label>
+          <input id="ecname" type="text" placeholder="Maria Dela Cruz">
+          <small class="err"></small>
+        </div>
+
+        <div class="field" data-f="ecphone">
+          <label for="ecphone">Contact mobile number</label>
+          <input id="ecphone" type="tel" pattern="[0-9]{11}" maxlength="11" placeholder="09181234567">
+          <small class="err"></small>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- ===== Portal account ===== -->
+    <section class="sec">
+      <h2>Portal account</h2>
+      <div class="grid">
+
+        <div class="field" data-f="pw">
+          <label for="pw">Password</label>
+          <input id="pw" type="password">
+          <div class="meter"><i id="meter"></i></div>
+          <small class="hint">8+ characters with upper and lower case, a number, and a symbol.</small>
+          <small class="err"></small>
+        </div>
+
+        <div class="field" data-f="pw2">
+          <label for="pw2">Confirm password</label>
+          <input id="pw2" type="password">
+          <small class="err"></small>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- ===== Documents and statement ===== -->
+    <section class="sec">
+      <h2>Documents and statement</h2>
+      <div class="grid">
+
+        <div class="field full" data-f="file">
+          <label for="file">2x2 photo or proof of grades</label>
+          <input id="file" type="file" accept="image/png, image/jpeg, application/pdf">
+          <small class="hint" id="finfo">PNG, JPG, or PDF, up to 2 MB.</small>
+          <img id="prev" alt="Photo preview">
+          <small class="err"></small>
+        </div>
+
+        <div class="field full" data-f="essay">
+          <label for="essay">Extracurricular background or scholarship justification</label>
+          <textarea id="essay" maxlength="600" placeholder="Tell us about your clubs, leadership, or why you need support."></textarea>
+          <small class="hint" id="count">0 / 500 characters (minimum 30)</small>
+          <small class="err"></small>
+        </div>
+
+        <div class="field full" data-f="terms">
+          <label class="opt">
+            <input type="checkbox" id="terms">
+            I agree to the university terms and the student honor code.
+          </label>
+          <small class="err"></small>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- ===== Buttons ===== -->
+    <div class="act">
+      <button class="pri" type="submit">Review registration</button>
+      <button class="sec2" type="reset" id="reset">Clear form</button>
+      <span id="banner" role="alert"></span>
+    </div>
+
+  </form>
+</div>
+
+<!-- Summary modal -->
+<dialog id="dlg">
+  <h2>Review your registration</h2>
+  <p class="s">Check the details below before you confirm.</p>
+  <dl id="sum"></dl>
+  <div class="mact">
+    <button class="sec2" id="edit" type="button">Edit details</button>
+    <button class="pri" id="ok" type="button">Confirm registration</button>
+  </div>
+</dialog>
+
+<!-- Message shown after confirming -->
+<div id="toast" role="status"></div>
+
+<script src="script.js"></script>
+</body>
+</html>
